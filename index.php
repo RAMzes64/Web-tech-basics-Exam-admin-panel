@@ -19,7 +19,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Ишкильдин Р.Ф. | Лабораторная работа 12</title>
+    <title>Ишкильдин Р.Ф.</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -64,19 +64,35 @@
             <div class="form-group">
                 <label for="region">Район</label>
                 <select class="form-control" id="region">
-                    <option>Выберите район</option>
-                    <option>Район 1</option>
-                    <option>Район 2</option>
-                    <option>Район 3</option>
+                <?php
+                    $result = mysqli_query($mysql, "SELECT * FROM regions");
+            
+                    if (!$result) {
+                        die("Ошибка выполнения запроса: " . mysqli_error($mysql));
+                    }
+                    $mysql->close();
+
+                    while($row =$result->fetch_assoc()){
+                        echo "<option>".$row["name"]."</option>";
+                    }
+                ?>
                 </select>
             </div>
             <div class="form-group">
                 <label for="objectType">Вид объекта</label>
                 <select class="form-control" id="objectType">
-                    <option>Выберите вид объекта</option>
-                    <option>Тип 1</option>
-                    <option>Тип 2</option>
-                    <option>Тип 3</option>
+                <?php
+                    $result = mysqli_query($mysql, "SELECT * FROM objectTypes");
+            
+                    if (!$result) {
+                        die("Ошибка выполнения запроса: " . mysqli_error($mysql));
+                    }
+                    $mysql->close();
+
+                    while($row =$result->fetch_assoc()){
+                        echo "<option>".$row["name"]."</option>";
+                    }
+                ?>
                 </select>
             </div>
             <div class="form-group">
@@ -90,10 +106,18 @@
             <div class="form-group">
                 <label for="benefits">Льготы</label>
                 <select class="form-control" id="benefits">
-                    <option>Выберите льготы</option>
-                    <option>Льгота 1</option>
-                    <option>Льгота 2</option>
-                    <option>Льгота 3</option>
+                <?php
+                    $result = mysqli_query($mysql, "SELECT * FROM benefits");
+            
+                    if (!$result) {
+                        die("Ошибка выполнения запроса: " . mysqli_error($mysql));
+                    }
+                    $mysql->close();
+
+                    while($row =$result->fetch_assoc()){
+                        echo "<option>".$row["name"]."</option>";
+                    }
+                ?>
                 </select>
             </div>
             <div class="form-group">
@@ -130,7 +154,7 @@
         </thead>
         <tbody>
             <?php
-            $result = mysqli_query($mysql, "SELECT * FROM table_lab WHERE");
+            $result = mysqli_query($mysql, "SELECT * FROM table_lab WHERE ");
             
             if (!$result) {
                 die("Ошибка выполнения запроса: " . mysqli_error($mysql));
